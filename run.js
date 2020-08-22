@@ -1,9 +1,10 @@
 function getUnread() {
   
+  var keystr = '[Ticket #'
   var response = GmailApp.search('is:unread');
   for (var i = 0; i < response.length; i++) {
     var subject = response[i].getFirstMessageSubject().trim();
-    if (subject.includes('[Ticket #')) {
+    if (subject.includes(keystr)) {
       var threadMessages = response[i].getMessages();
       var organization = threadMessages[0].getFrom().trim();
       var str = threadMessages[0].getPlainBody();
